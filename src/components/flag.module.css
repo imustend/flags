@@ -1,0 +1,8 @@
+.background {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

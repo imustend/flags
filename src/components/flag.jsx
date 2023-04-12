@@ -1,9 +1,12 @@
-function Flag(props) {
-    const flag_code = props.flags[Math.floor(Math.random() * props.flags.length)]
-    return <>
-        <img src={"https://flagcdn.com/w160/"+flag_code+".png"}</img>
-        <p>SSS</p>
-    </>
-}
+import classes from './flag.module.css'
+
+const Flag = (props) => {
+    const link = `https://flagcdn.com/w320/${props.flagCode}.png`;
+    return (
+        <div className={classes.background}>
+            <img src={link} alt={props.flagCode} />
+        </div>
+    )
+  }
 
 export default Flag;
