@@ -1,33 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import classes from './app.module.css'
+import Flag from './components/flag';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [correct, setCorrect] = useState(0);
+  
+  const [flags, setFlags] = useState({});
+  const [flagsArray, setFlagsArray] = useState([]);
+
+  useEffect(() => {
+    fetch("https://flagcdn.com/en/codes.json").then(res=>res.json()).then(data =>{ setFlags(data)
+  
+    setFlagsArray(Array.from(Object.keys(data), k => k).filter(k => k.length==2));    
+  });
+  
+  
+  
+  }, [])
+
+  console.log(flags)
+  console.log(flagsArray)
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className={classes.background}>
+      <p className={classes.score}>{count}/{correct}</p>
+
+        <Flag score={count} setscore={setCount} correct={correct} setcorrect={setCorrect} flags={flags} flagsarray={flagsArray}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    
     </div>
   )
 }
