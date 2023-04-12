@@ -61,10 +61,12 @@ function App() {
               }} className={classes.button}>GUESS</button>
             </>)}
             {answered1 && <>
-              {answer1.toLowerCase() != flags[flag1].toLowerCase() && <>
-                <p className={classes.incorrect}>{answer1}</p>
-              </>}
-              <p className={classes.correct}>{flags[flag1]}</p>
+              <div className={classes.answers}>
+                {answer1.toLowerCase() != flags[flag1].toLowerCase() && <>
+                  <div className={classes.text_container}><div className={classes.incorrect_icon}/><p className={classes.incorrect}>{answer1}</p></div>
+                </>}
+                <div className={classes.text_container}><div className={classes.correct_icon}/><p className={classes.correct}>{flags[flag1]}</p></div>
+            </div>
 
               <button className={answer1.toLowerCase() != flags[flag1].toLowerCase() ? classes.n : classes.c} onClick={ () => {
                 setFlag1(flagsArray[Math.floor(Math.random() * flagsArray.length)]);
@@ -88,10 +90,12 @@ function App() {
               }} className={classes.button}>GUESS</button>
             </>)}
             {answered2 && <>
-              {answer2.toLowerCase() != flags[flag2].toLowerCase() && <>
-                <p className={classes.incorrect}>{answer2}</p>
-              </>}
-              <p className={classes.correct}>{flags[flag2]}</p>
+            <div className={classes.answers}>
+                {answer2.toLowerCase() != flags[flag2].toLowerCase() && <>
+                  <div className={classes.text_container}><div className={classes.incorrect_icon}/><p className={classes.incorrect}>{answer2}</p></div>
+                </>}
+                <div className={classes.text_container}><div className={classes.correct_icon}/><p className={classes.correct}>{flags[flag2]}</p></div>
+            </div>
 
               <button className={answer2.toLowerCase() != flags[flag2].toLowerCase() ? classes.n : classes.c} onClick={ () => {
                 setFlag2(flagsArray[Math.floor(Math.random() * flagsArray.length)]);
@@ -116,10 +120,12 @@ function App() {
               }} className={classes.button}>GUESS</button>
             </>)}
             {answered3 && <>
-              {answer3.toLowerCase() != flags[flag3].toLowerCase() && <>
-                <p className={classes.incorrect}>{answer3}</p>
-              </>}
-              <p className={classes.correct}>{flags[flag3]}</p>
+              <div className={classes.answers}>
+                {answer3.toLowerCase() != flags[flag3].toLowerCase() && <>
+                  <div className={classes.text_container}><div className={classes.incorrect_icon}/><p className={classes.incorrect}>{answer3}</p></div>
+                </>}
+                <div className={classes.text_container}><div className={classes.correct_icon}/><p className={classes.correct}>{flags[flag3]}</p></div>
+            </div>
 
               <button className={answer3.toLowerCase() != flags[flag3].toLowerCase() ? classes.n : classes.c} onClick={ () => {
                 setFlag3(flagsArray[Math.floor(Math.random() * flagsArray.length)]);
