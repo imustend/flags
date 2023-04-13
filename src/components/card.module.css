@@ -15,7 +15,8 @@
     background-color: #5566ff;
     font-size: 1.5rem;
     margin-top: 1rem;
-    transition: 0.6s; 
+    transition: 0.6s;
+    color: #fff;
 }
 
 .button:hover {
@@ -41,6 +42,7 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    color: #fff;
 }
 
 .correct_icon {
@@ -50,6 +52,7 @@
 .correct_icon::before {
     content: '✓';
     font-size: 1.2rem;
+
 }
 
 .incorrect_icon {
