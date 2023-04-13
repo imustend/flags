@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import classes from './app.module.css'
+import Card from './components/card';
 import Flag from './components/flag';
 
 function App() {
@@ -14,13 +15,6 @@ function App() {
   const [flag2, setFlag2] = useState('');
   const [flag3, setFlag3] = useState('');
 
-  const [answer1, setAnswer1] = useState('');
-  const [answer2, setAnswer2] = useState('');
-  const [answer3, setAnswer3] = useState('');
-
-  const [answered1, setAnswered1] = useState(false);
-  const [answered2, setAnswered2] = useState(false);
-  const [answered3, setAnswered3] = useState(false);
 
   useEffect(() => {
     fetch("https://flagcdn.com/en/codes.json").then(res=>res.json()).then(data =>{ setFlags(data)
@@ -44,97 +38,15 @@ function App() {
   return (
     <div className="App">
       <div className={classes.background}>
-        <p className={classes.score}>{count}/{correct}</p>
+        <p className={classes.score}>{correct}/{count}</p>
         <div className={classes.cards}>
-          <div className={classes.card}>
-            <Flag flagCode={flag1}/>
+          <Card flag_code={[flag1, setFlag1]} flags={[flags, flagsArray]} score={[count, setCount, correct, setCorrect]}/>
 
-            {!answered1 && (<>
-              <input onChange={e => setAnswer1(e.target.value)} type='text' placeholder='Your guess...' className={classes.input}/>
+          <Card flag_code={[flag2, setFlag2]} flags={[flags, flagsArray]} score={[count, setCount, correct, setCorrect]}/>
 
-              <button onClick={ () => {
-                  setCount(count+1)
-                  setAnswered1(true)
-                  if (answer1.toLowerCase() == flags[flag1].toLowerCase()) {
-                    setCorrect(correct+1)
-                  }
-              }} className={classes.button}>GUESS</button>
-            </>)}
-            {answered1 && <>
-              <div className={classes.answers}>
-                {answer1.toLowerCase() != flags[flag1].toLowerCase() && <>
-                  <div className={classes.text_container}><div className={classes.incorrect_icon}/><p className={classes.incorrect}>{answer1}</p></div>
-                </>}
-                <div className={classes.text_container}><div className={classes.correct_icon}/><p className={classes.correct}>{flags[flag1]}</p></div>
-            </div>
+          <Card flag_code={[flag3, setFlag3]} flags={[flags, flagsArray]} score={[count, setCount, correct, setCorrect]}/>
 
-              <button className={answer1.toLowerCase() != flags[flag1].toLowerCase() ? classes.n : classes.c} onClick={ () => {
-                setFlag1(flagsArray[Math.floor(Math.random() * flagsArray.length)]);
-                setAnswer1('');
-                setAnswered1(false);
-              }}>NEXT</button>
-            </>}
-          </div>
-
-          <div className={classes.card}>
-            <Flag flagCode={flag2}/>
-            {!answered2 && (<>
-              <input onChange={e => setAnswer2(e.target.value)} type='text' placeholder='Your guess...' className={classes.input}/>
-
-              <button onClick={ () => {
-                  setCount(count+1)
-                  setAnswered2(true)
-                  if (answer2.toLowerCase() == flags[flag2].toLowerCase()) {
-                    setCorrect(correct+1)
-                  }
-              }} className={classes.button}>GUESS</button>
-            </>)}
-            {answered2 && <>
-            <div className={classes.answers}>
-                {answer2.toLowerCase() != flags[flag2].toLowerCase() && <>
-                  <div className={classes.text_container}><div className={classes.incorrect_icon}/><p className={classes.incorrect}>{answer2}</p></div>
-                </>}
-                <div className={classes.text_container}><div className={classes.correct_icon}/><p className={classes.correct}>{flags[flag2]}</p></div>
-            </div>
-
-              <button className={answer2.toLowerCase() != flags[flag2].toLowerCase() ? classes.n : classes.c} onClick={ () => {
-                setFlag2(flagsArray[Math.floor(Math.random() * flagsArray.length)]);
-                setAnswer2('');
-                setAnswered2(false);
-              }}>NEXT</button>
-            </>}
-          </div>
-
-          <div className={classes.card}>
-            <Flag flagCode={flag3}/>
-            
-            {!answered3 && (<>
-              <input onChange={e => setAnswer3(e.target.value)} type='text' placeholder='Your guess...' className={classes.input}/>
-
-              <button onClick={ () => {
-                  setCount(count+1)
-                  setAnswered3(true)
-                  if (answer3.toLowerCase() == flags[flag3].toLowerCase()) {
-                    setCorrect(correct+1)
-                  }
-              }} className={classes.button}>GUESS</button>
-            </>)}
-            {answered3 && <>
-              <div className={classes.answers}>
-                {answer3.toLowerCase() != flags[flag3].toLowerCase() && <>
-                  <div className={classes.text_container}><div className={classes.incorrect_icon}/><p className={classes.incorrect}>{answer3}</p></div>
-                </>}
-                <div className={classes.text_container}><div className={classes.correct_icon}/><p className={classes.correct}>{flags[flag3]}</p></div>
-            </div>
-
-              <button className={answer3.toLowerCase() != flags[flag3].toLowerCase() ? classes.n : classes.c} onClick={ () => {
-                setFlag3(flagsArray[Math.floor(Math.random() * flagsArray.length)]);
-                setAnswer3('');
-                setAnswered3(false);
-              }}>NEXT</button>
-            </>}
-          </div>
-
+          
         </div>
       </div>
     
