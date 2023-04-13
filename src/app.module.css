@@ -13,8 +13,16 @@
     padding-left: 10%;
     padding-right: 10%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(400px, auto);
     gap: 60px;
 }
 
+@media only screen and (max-width: 1350px) {
+    .cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .score {
+        font-size: 2rem;
+    }
+}
